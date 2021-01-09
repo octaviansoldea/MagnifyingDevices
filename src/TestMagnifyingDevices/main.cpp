@@ -12,7 +12,7 @@ int main()
 {
   ImagesManager imagesManager("/Users/octavian/Octavian/MagnifyingDevices/data/");
   
-    std::string image_path = samples::findFile("/Users/octavian/Octavian/MagnifyingDevices/data/lena.png");
+    std::string image_path = samples::findFile("/Users/octavian/Octavian/MagnifyingDevices/data/lena.jpg");
     Mat img = imread(image_path, IMREAD_COLOR);
     if(img.empty())
     {
@@ -23,7 +23,7 @@ int main()
     int k = waitKey(0); // Wait for a keystroke in the window
     if(k == 's')
     {
-        imwrite("/Users/octavian/Octavian/MagnifyingDevices/data/out.png", img);
+        imwrite("/Users/octavian/Octavian/MagnifyingDevices/data/out.jpg", img);
     }
     return 0;
 }
