@@ -11,4 +11,5 @@ find_package(ITK REQUIRED)
 
 add_subdirectory (libMagnifyingDevices)
 add_subdirectory (TestMagnifyingDevices)
+add_subdirectory (Demo2D)
 

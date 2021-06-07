@@ -7,16 +7,20 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
+include(${ITK_USE_FILE})
+
 project(libMagnifyingDevices)
 add_library(libMagnifyingDevices
-  include/ImagesManager.h
-  src/ImagesManager.cpp
+    Image.h
+    ImagesManager.h
+    Image.cpp
+    ImagesManager.cpp
 )
 
 target_include_directories(libMagnifyingDevices
     PUBLIC
         $<INSTALL_INTERFACE:include>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
 )
 
 target_compile_features(libMagnifyingDevices PRIVATE cxx_auto_type)

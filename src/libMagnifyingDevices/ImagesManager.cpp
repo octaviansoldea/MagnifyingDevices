@@ -16,11 +16,9 @@ ImagesManager::ImagesManager(const fs::path & aPath) {
 
 bool ImagesManager::init(const fs::path & aPath) {
   for (const auto& entry : fs::directory_iterator(aPath)) {
-    const auto strFileName = entry.path().filename().string();
     if (entry.is_regular_file()) {
-      cout << "file: " << strFileName << endl;
       Mat image;
-      if(readImage(image, aPath)) {
+      if(readImage(image, entry.path())) {
         add(image);
       }
     }

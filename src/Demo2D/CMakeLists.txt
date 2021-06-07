@@ -4,7 +4,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-project(MagnifyingDevices)
+project(Demo2D)
 find_package( OpenCV REQUIRED )
 find_package( ITK REQUIRED )
 
@@ -16,15 +16,13 @@ include(${ITK_USE_FILE})
 #include_directories(${ITK_INCLUDE_DIRS})
 
 link_directories(/Users/octavian/Octavian/Programs/ITK/build_itk_5.1.2/lib/)
-add_executable(Magnifier main.cpp)
+add_executable(Demo2D main.cpp)
 target_compile_features(Magnifier PRIVATE cxx_auto_type)
 
-#find_package(libMagnifyingDevices REQUIRED)
-#target_link_libraries(Magnifier PUBLIC libMagnifyingDevices ${ITK_LIBRARIES})
 find_library(COREFOUNDATION_LIBRARY CoreFoundation )
 
 
-target_link_libraries(Magnifier 
+target_link_libraries(Demo2D
 libMagnifyingDevices
 ${ITK_LIBRARIES}
 ${COREFOUNDATION_LIBRARY}
