@@ -13,8 +13,10 @@ project(libMagnifyingDevices)
 add_library(libMagnifyingDevices
     Image.h
     ImagesManager.h
+    Algorithms.h
     Image.cpp
     ImagesManager.cpp
+    Algorithms.cpp
 )
 
 target_include_directories(libMagnifyingDevices
