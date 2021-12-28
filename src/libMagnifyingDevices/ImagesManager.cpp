@@ -16,7 +16,7 @@ bool ImagesManager::init(const fs::path & aPath) {
   for (const auto& entry : fs::directory_iterator(aPath)) {
     if (entry.is_regular_file()) {
       Image image(entry.path());
-      if(image.load(Image::Modalities::OPENCV) == false) {
+      if(image.load() == false) {
         return(false);
       }
       m_Images.push_back(image);

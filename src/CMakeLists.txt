@@ -6,8 +6,9 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 project(MagnifyingDevices)
 
+enable_testing()
+
 find_package(OpenCV REQUIRED)
-find_package(ITK REQUIRED)
 
 add_subdirectory (libMagnifyingDevices)
 add_subdirectory (TestMagnifyingDevices)

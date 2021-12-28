@@ -19,6 +19,7 @@ void computeAlignment2D(Image * apImage, const Image & aImageTarget) {
     for(int nTY = -1; nTY <= 1; nTY++) {
       double dbTY = 1.0 * nTY;
       for(int indexAngle = -1; indexAngle <= 1; indexAngle++) {
+        cout << "nTX = " << nTX << " nTY = " << nTY << " indexAngle = " << indexAngle << endl;
         double dbRotationAngle = dbOneDegree * indexAngle;
         apImage->setTransform2D(dbTX, dbTY, dbRotationAngle);
         Image image = *apImage;
@@ -32,9 +33,9 @@ void computeAlignment2D(Image * apImage, const Image & aImageTarget) {
   }
   memcpy(apImage->m_Center, imageMartor.m_Center, sizeof(double) * 3);
   for(size_t index = 0; index < 3; index++) {
-    memcpy(apImage->m_Orientation[index], imageMartor.m_Orientation[index], sizeof(double) * 3);
+    memcpy(apImage->m_Rotation[index], imageMartor.m_Rotation[index], sizeof(double) * 3);
   }
-  memcpy(apImage->m_Scales, imageMartor.m_Scales, sizeof(double) * 3);
+  memcpy(apImage->m_Scale, imageMartor.m_Scale, sizeof(double) * 3);
 }
 
 void computeAlignment2D(

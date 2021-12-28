@@ -5,12 +5,16 @@
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
 
+#include "Algorithms.h"
 #include "ImagesManager.h"
 
 using namespace cv;
-int main_()
+using namespace std;
+
+int main0()
 {
-  ImagesManager imagesManager("/Users/octavian/Octavian/MagnifyingDevices/data/");
+  ImagesManager imagesManager;
+  imagesManager.init("/Users/octavian/Octavian/MagnifyingDevices/data/");
   
     std::string image_path = samples::findFile("/Users/octavian/Octavian/MagnifyingDevices/data/lena.jpg");
     Mat img = imread(image_path, IMREAD_COLOR);
@@ -28,34 +32,32 @@ int main_()
     return 0;
 }
 
-
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-
-int main(int argc, char * argv[])
+int main1()
 {
-  if (argc != 2)
-  {
-    std::cerr << "Usage: " << std::endl;
-    std::cerr << argv[0];
-    std::cerr << " <InputFileName>";
-    std::cerr << std::endl;
-    return EXIT_FAILURE;
+  string strDirInput = fs::current_path() /= "../data/sceneBooks/video_split";
+  
+  Image image1(strDirInput + "/sceneBooks0001.jpg");
+  if(image1.load() == false) {
+    return(1);
   }
-
-  constexpr unsigned int Dimension = 2;
-
-  using PixelType = unsigned char;
-  using ImageType = itk::Image<PixelType, Dimension>;
-
-  using ReaderType = itk::ImageFileReader<ImageType>;
-  ReaderType::Pointer reader = ReaderType::New();
-  reader->SetFileName(argv[1]);
-  reader->Update();
-
-  ImageType::Pointer image = reader->GetOutput();
-
-  return EXIT_SUCCESS;
+  
+  Image image2(strDirInput + "/sceneBooks0002.jpg");
+  if(image2.load() == false) {
+    return(1);
+  }
+  
+  return 1;
 }
 
-
+int main(int argc, const char * argv[])
+{
+  cerr << "Arguments = " << argv[1] << endl;
+  
+  if(string(argv[1]) == "0") {
+    return main0();
+  } else {
+    return main1();
+  }
+  
+  return 0;
+}

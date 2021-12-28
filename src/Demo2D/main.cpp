@@ -13,7 +13,7 @@ int main(int argc, char * argv[])
   {
     cerr << "Usage: " << std::endl;
     cerr << argv[0];
-    //std::cerr << " <Input Directory>";
+    std::cerr << " <Input Directory>";
     cerr << std::endl;
     return EXIT_FAILURE;
   }

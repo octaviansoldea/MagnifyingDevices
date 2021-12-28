@@ -8,9 +8,6 @@
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
 
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-
 namespace fs = std::filesystem;
 
 struct Image {
@@ -18,38 +15,40 @@ struct Image {
   
   fs::path m_Path;
   
-  enum class Modalities {
-    NO_MODALITY = 0x0,
-    OPENCV = 0x1,
-    ITK = 0x2
-  };
-  Modalities m_Modalities = Modalities::NO_MODALITY;
-  
   cv::Mat m_ImageOpenCV;
-  
-  static constexpr unsigned int Dimension = 2;
-  using PixelType = unsigned char;
-  using ImageType = itk::Image<PixelType, Dimension>;
-  
-  ImageType::Pointer m_pImageITK;
-  
-  bool load(Modalities aModalities);
-  bool load(Modalities aModalities, const fs::path & aPath);
-  bool writeImage(Modalities aModalities) const;
-  bool writeImage(Modalities aModalities, const fs::path & aPath) const;
+
+  bool load();
+  bool load(const fs::path & aPath);
+  bool writeImage() const;
+  bool writeImage(const fs::path & aPath) const;
 
   double m_Center[3] = {0.0, 0.0, 0.0};
-  double m_Orientation[3][3] = {
+  double m_Rotation[3][3] = {
     {1.0, 0.0, 0.0},
     {0.0, 1.0, 0.0},
     {0.0, 0.0, 1.0}
   };
-  double m_Scales[3] = {1.0, 1.0, 1.0};
+  double m_Scale[3] = {1.0, 1.0, 1.0};
   
   void setTransform2D(double adbTX, double adbTY, double adbAngle);
+
+  void updateOpenCVStructs();
+  cv::Mat getTransformImageToWorld();
+  void computePosition3D(double coordinates[3], int i, int j);
+  void getColor(unsigned char rgb[3], double coordinates[3]);
+   
+  static double distance(Image & image1, Image & image2);
+  static double distanceFromTo(Image & imageSrc, Image & imageDst);
+private:
   
-  static double distance(const Image & image1, const Image & image2);
+  void updateOpenCVScale();
+  void updateOpenCVRotation();
+  void updateOpenCVTranslation();
   
+  cv::Mat m_OpenCVScale = cv::Mat::eye(4, 4, CV_64FC1);
+  cv::Mat m_OpenCVRotation = cv::Mat::eye(4, 4, CV_64FC1);
+  cv::Mat m_OpenCVCenter = cv::Mat::eye(4, 4, CV_64FC1);
+  cv::Mat m_TransformImageToWorld = cv::Mat::eye(4, 4, CV_64FC1);
 };
 
 

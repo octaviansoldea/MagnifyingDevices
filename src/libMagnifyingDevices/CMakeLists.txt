@@ -7,8 +7,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
-include(${ITK_USE_FILE})
-
 project(libMagnifyingDevices)
 add_library(libMagnifyingDevices
     Image.h
