@@ -13,4 +13,5 @@ find_package(OpenCV REQUIRED)
 add_subdirectory (libMagnifyingDevices)
 add_subdirectory (TestMagnifyingDevices)
 add_subdirectory (Demo2D)
+add_subdirectory (Experiments)
 
