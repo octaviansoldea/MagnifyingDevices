@@ -37,12 +37,11 @@ include_directories(
 # Prevent a "command line is too long" failure in Windows.
 set(CMAKE_NINJA_FORCE_RESPONSE_FILE "ON" CACHE BOOL "Force Ninja to use response files.")
 
-
 add_executable(Experiment1 main.cpp)
 
 target_link_libraries(Experiment1
   libMagnifyingDevices
-  ${COREFOUNDATION_LIBRARY}
+  ${MACOSX_LIBRARIES}
   ${VTK_LIBRARIES}
 )
 

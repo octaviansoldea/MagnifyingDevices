@@ -1,4 +1,5 @@
 #include <vtkActor.h>
+#include <vtkAutoInit.h>
 #include <vtkAxesActor.h>
 #include <vtkCamera.h>
 #include <vtkCaptionActor2D.h>
@@ -12,6 +13,9 @@
 #include <vtkSphereSource.h>
 #include <vtkTextProperty.h>
 #include <vtkTransform.h>
+
+VTK_MODULE_INIT(vtkInteractionStyle);
+VTK_MODULE_INIT(vtkRenderingOpenGL2)
 
 int main(int, char*[])
 {

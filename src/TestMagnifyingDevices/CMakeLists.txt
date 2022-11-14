@@ -19,7 +19,7 @@ find_library(COREFOUNDATION_LIBRARY CoreFoundation )
 
 target_link_libraries(MagnifyingDevices
     libMagnifyingDevices
-    ${COREFOUNDATION_LIBRARY}
+    #${COREFOUNDATION_LIBRARY}
 )
 
 add_test(TestMagnifyingDevices0 MagnifyingDevices 0)

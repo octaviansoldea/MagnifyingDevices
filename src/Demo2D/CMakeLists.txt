@@ -19,5 +19,5 @@ find_library(COREFOUNDATION_LIBRARY CoreFoundation)
 
 target_link_libraries(Demo2D
   libMagnifyingDevices
-  ${COREFOUNDATION_LIBRARY}
+  ${MACOSX_LIBRARIES}
 )

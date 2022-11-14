@@ -44,7 +44,7 @@ void computeAlignment2D(
   if(indexTarget >= apImagesManager->size()) {
     string strError =
       string("indexTarget ") +
-      std::to_string((long unsigned)index) +
+      //to_string((unsigned long)index) +
       " > " +
       to_string(apImagesManager->size());
     throw std::out_of_range(strError);

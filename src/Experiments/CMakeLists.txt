@@ -6,3 +6,9 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_subdirectory (Experiment1)
 add_subdirectory (Experiment2)
+
+if(APPLE)
+  set(MACOSX_LIBRARIES ${COREFOUNDATION_LIBRARY})
+else() #APPLE
+  set(MACOSX_LIBRARIES "")
+endif() #APPLE

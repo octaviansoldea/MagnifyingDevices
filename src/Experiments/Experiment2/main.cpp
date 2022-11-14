@@ -1,4 +1,6 @@
 #include <vtkActor.h>
+#include <vtkAutoInit.h>
+#include <vtkAxesActor.h>
 #include <vtkCamera.h>
 #include <vtkImageReader2.h>
 #include <vtkImageReader2Factory.h>
@@ -10,6 +12,12 @@
 #include <vtkRenderWindowInteractor.h>
 #include <vtkRenderer.h>
 #include <vtkTexture.h>
+#include <vtkTransform.h>
+
+
+VTK_MODULE_INIT(vtkInteractionStyle);
+VTK_MODULE_INIT(vtkRenderingOpenGL2)
+
 //
 // This simple example shows how to do basic texture mapping.
 //
@@ -66,6 +74,16 @@ int main(int argc, char* argv[])
   renWin->SetSize(640, 480);
   renWin->SetWindowName("TexturePlane");
 
+  vtkNew<vtkAxesActor> axes;
+  renderer->AddActor(axes);
+
+
+  vtkNew<vtkTransform> transform;
+  transform->Translate(1.0, 1.0, 1.0);
+
+  // The axes are positioned with a user transform
+  axes->SetUserTransform(transform);
+
   // render the image
   renWin->Render();
 
@@ -74,6 +92,7 @@ int main(int argc, char* argv[])
   renderer->GetActiveCamera()->Roll(-20);
   renderer->ResetCameraClippingRange();
   renWin->Render();
+
   iren->Start();
 
   return EXIT_SUCCESS;
